@@ -35,7 +35,7 @@ function run() {
 }
 
 function processFromString(svg, config, input, output) {
-  var svgo = svgo_with_custom_plugins(config);
+  var svgo = svgoWithCustomPlugins(config);
 
   svgo.optimize(svg, function(result) {
     if (result.error) {
@@ -47,7 +47,7 @@ function processFromString(svg, config, input, output) {
   });
 }
 
-function svgo_with_custom_plugins(config) {
+function svgoWithCustomPlugins(config) {
   var plugins = loadPlugins();
 
   plugins.forEach(function(plugin) {
@@ -65,7 +65,8 @@ function loadPlugins() {
   var plugins = [];
 
   var names = [
-    'convertAbsolutePathData'
+    'convertPathToAbsoluteCoordinates',
+    'convertPathToUnitCoordinates'
   ];
 
   names.forEach(function(name) {
